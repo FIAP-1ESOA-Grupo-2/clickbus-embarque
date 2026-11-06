@@ -1,0 +1,146 @@
+import type { Trip } from './types';
+
+/**
+ * Dados de demonstração. Empresas e passageiros são fictícios.
+ * Em produção viriam da API da ClickBus (pedido do passageiro)
+ * e do sistema da rodoviária (partidas e plataformas).
+ */
+
+export const MY_TRIP_ID = 'sp-rj-1430';
+
+export const initialDepartures: Trip[] = [
+  {
+    id: 'sp-cps-1345',
+    locator: 'CB-2H8L11',
+    passengerName: '',
+    origin: 'São Paulo',
+    originTerminal: 'Terminal Rodoviário Tietê',
+    destination: 'Campinas',
+    company: 'Expresso Paulista',
+    service: 'Convencional',
+    seat: 0,
+    departure: '13:45',
+    arrival: '15:15',
+    boardingStart: '13:25',
+    platform: 4,
+    status: 'boarding',
+    delayMinutes: 0,
+    checkedIn: 38,
+    boarded: 30,
+    totalSeats: 44,
+  },
+  {
+    id: 'sp-santos-1400',
+    locator: 'CB-9Q2M40',
+    passengerName: '',
+    origin: 'São Paulo',
+    originTerminal: 'Terminal Rodoviário Tietê',
+    destination: 'Santos',
+    company: 'Viação Litoral',
+    service: 'Executivo',
+    seat: 0,
+    departure: '14:00',
+    arrival: '15:20',
+    boardingStart: '13:40',
+    platform: 9,
+    status: 'on_time',
+    delayMinutes: 0,
+    checkedIn: 30,
+    boarded: 0,
+    totalSeats: 46,
+  },
+  {
+    id: 'sp-cwb-1415',
+    locator: 'CB-4T7P02',
+    passengerName: '',
+    origin: 'São Paulo',
+    originTerminal: 'Terminal Rodoviário Tietê',
+    destination: 'Curitiba',
+    company: 'Rápido Sul',
+    service: 'Leito',
+    seat: 0,
+    departure: '14:15',
+    arrival: '20:45',
+    boardingStart: '13:55',
+    platform: 15,
+    status: 'delayed',
+    delayMinutes: 15,
+    checkedIn: 22,
+    boarded: 0,
+    totalSeats: 42,
+  },
+  {
+    id: MY_TRIP_ID,
+    locator: 'CB-7F3K29',
+    passengerName: 'Ana Souza',
+    origin: 'São Paulo',
+    originTerminal: 'Terminal Rodoviário Tietê',
+    destination: 'Rio de Janeiro',
+    company: 'Viação Horizonte',
+    service: 'Executivo',
+    seat: 23,
+    departure: '14:30',
+    arrival: '20:40',
+    boardingStart: '14:10',
+    platform: 12,
+    status: 'on_time',
+    delayMinutes: 0,
+    checkedIn: 31,
+    boarded: 18,
+    totalSeats: 44,
+  },
+  {
+    id: 'sp-bh-1440',
+    locator: 'CB-6K1W77',
+    passengerName: '',
+    origin: 'São Paulo',
+    originTerminal: 'Terminal Rodoviário Tietê',
+    destination: 'Belo Horizonte',
+    company: 'Expresso Gerais',
+    service: 'Executivo',
+    seat: 0,
+    departure: '14:40',
+    arrival: '23:10',
+    boardingStart: '14:20',
+    platform: 6,
+    status: 'on_time',
+    delayMinutes: 0,
+    checkedIn: 18,
+    boarded: 0,
+    totalSeats: 40,
+  },
+  {
+    id: 'sp-sjc-1500',
+    locator: 'CB-1A5S93',
+    passengerName: '',
+    origin: 'São Paulo',
+    originTerminal: 'Terminal Rodoviário Tietê',
+    destination: 'São José dos Campos',
+    company: 'Viação Vale',
+    service: 'Convencional',
+    seat: 0,
+    departure: '15:00',
+    arrival: '16:30',
+    boardingStart: '14:40',
+    platform: 3,
+    status: 'on_time',
+    delayMinutes: 0,
+    checkedIn: 9,
+    boarded: 0,
+    totalSeats: 46,
+  },
+];
+
+/** Total de plataformas do terminal de demonstração. */
+export const PLATFORM_COUNT = 20;
+
+/** Pessoas aguardando em cada plataforma (1..20), base da demonstração. */
+export const initialCrowd: number[] = [
+  12, 20, 8, 64, 15, 22, 10, 38, 41, 9, 14, 27, 6, 18, 47, 11, 5, 33, 13, 7,
+];
+
+export const changeReasons = [
+  'Plataforma em manutenção',
+  'Reorganização de fluxo',
+  'Ônibus maior que o previsto',
+];
