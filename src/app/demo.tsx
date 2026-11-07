@@ -65,8 +65,8 @@ export default function Demo() {
         ))}
 
         <View style={styles.tip}>
-          <Icon name="info" size={20} color="#3D2450" />
-          <AppText size={14} color="#3D2450" style={{ flex: 1, lineHeight: 20 }}>
+          <Icon name="info" size={20} color={colors.brandInk} />
+          <AppText size={14} color={colors.brandInk} style={{ flex: 1, lineHeight: 20 }}>
             Dica para a demo na web: abra o painel do operador em uma aba e o app do passageiro em outra. A troca de plataforma aparece nas duas ao mesmo tempo.
           </AppText>
         </View>

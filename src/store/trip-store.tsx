@@ -164,7 +164,7 @@ export function TripProvider({ children }: { children: ReactNode }) {
   const dismissNotification = useCallback((id: string) => dispatch({ type: 'dismiss', id }), []);
 
   const value = useMemo<TripStore>(() => {
-    const myTrip = state.departures.find((t) => t.id === MY_TRIP_ID) ?? initialDepartures[3];
+    const myTrip = state.departures.find((t) => t.id === MY_TRIP_ID)!;
     return { ...state, myTrip, publish, dismissNotification };
   }, [state, publish, dismissNotification]);
 

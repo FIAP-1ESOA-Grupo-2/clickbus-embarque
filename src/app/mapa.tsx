@@ -50,7 +50,7 @@ export default function MapaTerminal() {
             <Icon name={current.icon} size={30} color="#FFFFFF" />
           </View>
           <View style={{ flex: 1, gap: 2 }}>
-            <AppText weight="extrabold" size={12} color="#6A0C93" style={{ letterSpacing: 0.5 }}>
+            <AppText weight="extrabold" size={12} color={colors.brandText} style={{ letterSpacing: 0.5 }}>
               PASSO {step} DE {steps.length}
             </AppText>
             <AppText weight="extrabold" size={18}>

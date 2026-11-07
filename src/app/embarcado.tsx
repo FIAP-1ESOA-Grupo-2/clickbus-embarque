@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 14,
     paddingVertical: 12,
     borderWidth: 1.5,
-    borderColor: '#EEE6F4',
+    borderColor: colors.divider,
     borderRadius: 14,
   },
   extraIcon: {

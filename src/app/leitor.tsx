@@ -4,7 +4,6 @@ import { Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { AppText, Button, Icon } from '@/components/ui';
-import { MY_TRIP_ID } from '@/data/mock';
 import { useTrips } from '@/store/trip-store';
 import { colors } from '@/theme';
 
@@ -19,9 +18,8 @@ type Result =
  * câmera (expo-camera) e validaria a assinatura do QR no backend/offline.
  */
 export default function Leitor() {
-  const { departures, publish } = useTrips();
+  const { myTrip: trip, publish } = useTrips();
   const insets = useSafeAreaInsets();
-  const trip = departures.find((d) => d.id === MY_TRIP_ID)!;
   const [result, setResult] = useState<Result>({ kind: 'idle' });
 
   const readValid = () => {

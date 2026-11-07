@@ -32,7 +32,7 @@ export default function MinhaViagem() {
           <View style={{ padding: 16, gap: 12 }}>
             <View style={styles.rowBetween}>
               <View style={styles.todayChip}>
-                <AppText weight="extrabold" size={13} color="#6A0C93">
+                <AppText weight="extrabold" size={13} color={colors.brandText}>
                   Hoje
                 </AppText>
               </View>
@@ -88,7 +88,7 @@ export default function MinhaViagem() {
         </View>
 
         <InfoStrip icon="bell" tone="brand">
-          Chegue 30 min antes. Pelo trânsito de agora, <AppText weight="extrabold" size={14} color="#3D2450">saia às 13:20</AppText> — a gente te avisa na hora certa.
+          Chegue 30 min antes. Pelo trânsito de agora, <AppText weight="extrabold" size={14} color={colors.brandInk}>saia às 13:20</AppText> — a gente te avisa na hora certa.
         </InfoStrip>
 
         <Button label="Cheguei na rodoviária" icon="map-pin" href="/terminal" style={{ marginTop: 4 }} />
@@ -144,7 +144,7 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     backgroundColor: '#FFFBF0',
     borderTopWidth: 1,
-    borderTopColor: '#EEE6F4',
+    borderTopColor: colors.divider,
   },
   tiles: { flexDirection: 'row', gap: 10 },
 });

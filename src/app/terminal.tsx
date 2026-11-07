@@ -14,11 +14,11 @@ const journey = ['Chegada', 'Ir à plataforma', 'Embarque', 'Viagem'];
  * troca de plataforma, atraso, embarque liberado.
  */
 export default function ModoTerminal() {
-  const { myTrip: trip } = useTrips();
+  const { myTrip: trip, myBoarding } = useTrips();
   const insets = useSafeAreaInsets();
   const changed = trip.previousPlatform !== undefined;
   const route = planRoute(trip.platform, false);
-  const currentStep = trip.status === 'boarding' ? 2 : 1;
+  const currentStep = myBoarding === 'confirmed' ? 3 : trip.status === 'boarding' ? 2 : 1;
 
   return (
     <View style={styles.screen}>
@@ -183,7 +183,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     borderTopWidth: 1,
-    borderTopColor: '#EEE6F4',
+    borderTopColor: colors.divider,
     paddingTop: 12,
   },
   timeline: { flexDirection: 'row', gap: 4 },

@@ -1,5 +1,6 @@
 import Svg, { Circle, G, Line, Path, Rect, Text as SvgText } from 'react-native-svg';
 
+import { PLATFORM_COUNT } from '@/data/mock';
 import { colors, fonts } from '@/theme';
 
 /**
@@ -12,10 +13,12 @@ import { colors, fonts } from '@/theme';
 
 type Point = [number, number];
 
-const FIRST_BAY = 7;
+/** A planta mostra 7 plataformas por vez, com a do passageiro sempre visível. */
 const BAY_COUNT = 7;
-const bayX = (n: number) => 16 + (n - FIRST_BAY) * 52;
-const bayCenter = (n: number) => bayX(n) + 23;
+const firstBayFor = (platform: number) =>
+  Math.min(Math.max(platform - Math.floor(BAY_COUNT / 2), 1), PLATFORM_COUNT - BAY_COUNT + 1);
+const bayX = (n: number, firstBay: number) => 16 + (n - firstBay) * 52;
+const bayCenter = (n: number, firstBay: number) => bayX(n, firstBay) + 23;
 
 const START: Point = [338, 452];
 const CORRIDOR_Y = 152;
@@ -29,7 +32,7 @@ export interface RoutePlan {
 }
 
 export function planRoute(platform: number, accessible: boolean): RoutePlan {
-  const bx = bayCenter(platform);
+  const bx = bayCenter(platform, firstBayFor(platform));
   const verticalX = accessible ? 257 : 338;
   const step1: Point[] = accessible
     ? [START, [338, 326], [257, 326]]
@@ -83,9 +86,10 @@ export function TerminalMap({
   const done = plan.steps.slice(0, step - 1);
   const next = plan.steps.slice(step);
   const you = current[0];
-  const dest = bayCenter(platform);
+  const firstBay = firstBayFor(platform);
+  const dest = bayCenter(platform, firstBay);
   const calloutX = Math.min(Math.max(dest - 73, 8), 390 - 154);
-  const label = (x: number, y: number, text: string, size = 13, color = '#3D2450') => (
+  const label = (x: number, y: number, text: string, size = 13, color: string = colors.brandInk) => (
     <SvgText x={x} y={y} fontSize={size} fontFamily={fonts.extrabold} fill={color} textAnchor="middle">
       {text}
     </SvgText>
@@ -102,15 +106,15 @@ export function TerminalMap({
 
       {/* Piso inferior: plataformas e corredor */}
       <Rect x={0} y={0} width={390} height={196} fill="#E7DDF0" />
-      {Array.from({ length: BAY_COUNT }, (_, i) => FIRST_BAY + i)
+      {Array.from({ length: BAY_COUNT }, (_, i) => firstBay + i)
         .filter((n) => n !== platform)
         .map((n) => (
           <G key={n}>
-            <Rect x={bayX(n)} y={44} width={46} height={62} rx={10} fill="#FFFFFF" stroke="#CDBFD8" />
-            {label(bayX(n) + 23, 81, String(n), 15, colors.textMuted)}
+            <Rect x={bayX(n, firstBay)} y={44} width={46} height={62} rx={10} fill="#FFFFFF" stroke="#CDBFD8" />
+            {label(bayCenter(n, firstBay), 81, String(n), 15, colors.textMuted)}
           </G>
         ))}
-      <Rect x={bayX(platform) - 6} y={38} width={58} height={74} rx={12} fill={colors.brand} stroke="#FFFFFF" strokeWidth={3} />
+      <Rect x={bayX(platform, firstBay) - 6} y={38} width={58} height={74} rx={12} fill={colors.brand} stroke="#FFFFFF" strokeWidth={3} />
       {label(dest, 72, 'PLAT.', 11, colors.brandOnDark)}
       {label(dest, 94, String(platform), 22, '#FFFFFF')}
       <Rect x={calloutX} y={8} width={146} height={22} rx={11} fill={colors.brand} />

@@ -84,8 +84,8 @@ export default function Assistente() {
           ) : (
             <View key={m.id} style={styles.aiBubble}>
               <View style={styles.aiChip}>
-                <Icon name="star" size={12} color="#6A0C93" />
-                <AppText weight="extrabold" size={12} color="#6A0C93">
+                <Icon name="star" size={12} color={colors.brandText} />
+                <AppText weight="extrabold" size={12} color={colors.brandText}>
                   Mensagem da nossa IA
                 </AppText>
               </View>
@@ -184,8 +184,8 @@ function ReplyCard({ card, trip }: { card: AssistantCard; trip: Trip }) {
     case 'acessibilidade':
       return (
         <View style={[styles.note, { backgroundColor: colors.brandSoft }]}>
-          <Icon name="user-check" size={20} color="#6A0C93" />
-          <AppText size={14} color="#3D2450" style={{ flex: 1 }}>
+          <Icon name="user-check" size={20} color={colors.brandText} />
+          <AppText size={14} color={colors.brandInk} style={{ flex: 1 }}>
             Pedido de assistência enviado. Tempo médio de chegada: 5 min.
           </AppText>
         </View>
@@ -193,8 +193,8 @@ function ReplyCard({ card, trip }: { card: AssistantCard; trip: Trip }) {
     case 'guarda-volumes':
       return (
         <View style={[styles.note, { backgroundColor: colors.brandSoft }]}>
-          <Icon name="lock" size={20} color="#6A0C93" />
-          <AppText size={14} color="#3D2450" style={{ flex: 1 }}>
+          <Icon name="lock" size={20} color={colors.brandText} />
+          <AppText size={14} color={colors.brandInk} style={{ flex: 1 }}>
             Guarda-volumes · Piso superior · 6h às 23h
           </AppText>
         </View>
@@ -252,7 +252,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: 10,
     borderWidth: 1.5,
-    borderColor: '#EEE6F4',
+    borderColor: colors.divider,
     borderRadius: 14,
     padding: 10,
   },

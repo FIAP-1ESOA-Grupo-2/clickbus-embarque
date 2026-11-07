@@ -20,7 +20,7 @@ export async function askAssistant(question: string, trip: Trip): Promise<Assist
   const q = question
     .toLowerCase()
     .normalize('NFD')
-    .replace(/[̀-ͯ]/g, '');
+    .replace(/[\u0300-\u036f]/g, ''); // remove acentos
 
   const cards: AssistantCard[] = [];
   const parts: string[] = [];

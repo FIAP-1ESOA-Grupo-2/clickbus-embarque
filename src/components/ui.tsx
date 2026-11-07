@@ -183,7 +183,7 @@ export function InfoStrip({
 }) {
   const t = {
     warning: { bg: colors.warningSoft, fg: colors.warningText },
-    brand: { bg: colors.brandSoft, fg: '#3D2450' },
+    brand: { bg: colors.brandSoft, fg: colors.brandInk },
     danger: { bg: colors.dangerSoft, fg: '#5C1610' },
     success: { bg: colors.successSoft, fg: colors.successText },
   }[tone];

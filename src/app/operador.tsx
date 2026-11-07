@@ -1,5 +1,5 @@
 import { router } from 'expo-router';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, View, useWindowDimensions } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
@@ -24,6 +24,9 @@ export default function PainelOperador() {
   const [target, setTarget] = useState<number | null>(null);
   const [reason, setReason] = useState(changeReasons[0]);
   const [sent, setSent] = useState<string | null>(null);
+  const sentTimer = useRef<ReturnType<typeof setTimeout>>(undefined);
+
+  useEffect(() => () => clearTimeout(sentTimer.current), []);
 
   const busy = useMemo(() => new Set(departures.map((d) => d.platform)), [departures]);
   const freePlatforms = Array.from({ length: PLATFORM_COUNT }, (_, i) => i + 1).filter((p) => !busy.has(p));
@@ -32,7 +35,8 @@ export default function PainelOperador() {
 
   const confirm = (message: string) => {
     setSent(message);
-    setTimeout(() => setSent(null), 4000);
+    clearTimeout(sentTimer.current);
+    sentTimer.current = setTimeout(() => setSent(null), 4000);
   };
 
   const changePlatform = () => {
@@ -85,7 +89,7 @@ export default function PainelOperador() {
               Partidas de hoje
             </AppText>
             <AppText size={14} color={colors.textMuted}>
-              Sexta, 6 de novembro · atualizado agora
+              {today} · atualizado agora
             </AppText>
           </View>
           <View style={styles.demoChip}>
@@ -151,7 +155,7 @@ export default function PainelOperador() {
                 {crowd.map((people, i) => {
                   const level = people >= 40 ? 2 : people >= 25 ? 1 : 0;
                   const bg = [colors.brandSoft, colors.brandMuted, colors.brandDeep][level];
-                  const fg = ['#3D2450', '#2A0A3D', '#FFFFFF'][level];
+                  const fg = [colors.brandInk, '#2A0A3D', '#FFFFFF'][level];
                   return (
                     <View key={i} style={[styles.heatCell, { backgroundColor: bg }]}>
                       <AppText weight="extrabold" size={15} color={fg}>
@@ -270,6 +274,9 @@ export default function PainelOperador() {
   );
 }
 
+const todayLabel = new Date().toLocaleDateString('pt-BR', { weekday: 'long', day: 'numeric', month: 'long' });
+const today = todayLabel.charAt(0).toUpperCase() + todayLabel.slice(1);
+
 const colWidths = [{ width: 80 }, { flex: 1, minWidth: 180 }, { width: 110 }, { width: 190 }, { width: 170 }];
 
 function DepartureRow({ trip, selected, onPress }: { trip: Trip; selected: boolean; onPress: () => void }) {
@@ -353,10 +360,10 @@ const styles = StyleSheet.create({
     padding: 14,
   },
   panel: { backgroundColor: '#FFFFFF', borderRadius: 16, overflow: 'hidden' },
-  tr: { flexDirection: 'row', alignItems: 'center', borderTopWidth: 1, borderTopColor: '#EEE6F4', minHeight: 60 },
+  tr: { flexDirection: 'row', alignItems: 'center', borderTopWidth: 1, borderTopColor: colors.divider, minHeight: 60 },
   thead: { borderTopWidth: 0, minHeight: 44 },
   cell: { paddingHorizontal: 12, paddingVertical: 8 },
-  barTrack: { width: 90, height: 8, borderRadius: 4, backgroundColor: '#EEE6F4', overflow: 'hidden' },
+  barTrack: { width: 90, height: 8, borderRadius: 4, backgroundColor: colors.divider, overflow: 'hidden' },
   barFill: { height: 8, borderRadius: 4, backgroundColor: colors.brand },
   heatmap: { flexDirection: 'row', flexWrap: 'wrap', gap: 8 },
   heatCell: { width: 58, flexGrow: 1, borderRadius: 10, paddingVertical: 10, alignItems: 'center', gap: 2 },

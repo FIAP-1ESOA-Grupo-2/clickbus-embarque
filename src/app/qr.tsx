@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
   ticket: { backgroundColor: '#FFFFFF', borderRadius: 22, overflow: 'hidden' },
   ticketTop: { padding: 22, alignItems: 'center', gap: 14 },
   inline: { flexDirection: 'row', alignItems: 'center', gap: 8 },
-  qrFrame: { padding: 14, borderWidth: 2, borderColor: '#EEE6F4', borderRadius: 18 },
+  qrFrame: { padding: 14, borderWidth: 2, borderColor: colors.divider, borderRadius: 18 },
   perforation: { flexDirection: 'row', alignItems: 'center' },
   notch: { width: 22, height: 22, borderRadius: 11, backgroundColor: colors.brandDeep },
   dashes: { flex: 1, borderTopWidth: 2, borderStyle: 'dashed', borderColor: '#E3D6EC' },
