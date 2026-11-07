@@ -45,3 +45,4 @@ example
 # materiais do challenge (não versionar)
 docs/*.pptx
 docs/*.pdf
+docs/instructions.md

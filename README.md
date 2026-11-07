@@ -118,11 +118,11 @@ React Native · Expo (SDK 58) · Expo Router · TypeScript · react-native-svg �
 
 | Nome | RM |
 | --- | --- |
-| [Integrante 1] | [RM] |
-| [Integrante 2] | [RM] |
-| [Integrante 3] | [RM] |
-| [Integrante 4] | [RM] |
-| [Integrante 5] | [RM] |
+| Caue Garaude Ezaledo | RM554828 |
+| Gabriel Rossin Ferrante | RM554886 |
+| Lucas Alves Lobo | RM555654 |
+| Luan Robis Murata | RM557860 |
+| Rafael Jango | RM555297 |
 
 ---
 
